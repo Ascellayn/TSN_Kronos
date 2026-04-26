@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html {DEFAULT_THEME} lang="{DEFAULT_LANG}">
+	<head>
+		<title>News - The Sirio Network</title>
+		<!-- Misc-->
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="height=device-height, width=device-width, initial-scale=0.75"/>
+		<!-- External -->
+		<link rel="stylesheet" href="{SOURCE_CSS}">
+		<!-- SNJS / Webpage Arguments -->
+		<script>const Awaited_Objects = ["SNJS_Navigation", "SNJS_WorkInProgress"];</script>
+		<script type="module" src="{SOURCE_JS}"></script>
+
+		<!-- SEO -->
+		<meta content="Stay up to date with The Sirio Network's current projects and future plans with TSN's Kronos Articles System." name="description"/>
+		<meta content="{AUTHOR_BASE}" name="author"/>
+		<meta content="{KEYWORDS_BASE}" name="keywords"/>
+		<!-- Embed -->
+		<meta content="News - The Sirio Network" property="og:title"/>
+		<meta content="Stay up to date with The Sirio Network's current projects and future plans with TSN's Kronos Articles System." property="og:description"/>
+		<meta content="{DEFAULT_BANNER}" property="og:image"/>
+		<meta content="{DEFAULT_COLOR}" data-react-helmet="true" name="theme-color"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+	</head>
+	<body>
+		<div id="Background"></div>
+		<div id="Floating"></div>
+		<div id="Root">
+			<div id="Base">
+				<h1>Welcome to The Sirio Network's Articles</h1>
+				<p>Powered by <a href="https://github.com/Ascellayn/TSN_Kronos" target="_blank">TSN Kronos {KRONOS_VERSION}</a></p>
+			</div>
+			<code>
+				{KRONOS_AppTSNA}
+			</code>
+			<p>Built in {KRONOS_BUILD-TIME}</p>
+			<p>Average Build Time: {KRONOS_BUILD-AVERAGE} ({KRONOS_BUILD-AVERAGE_SAMPLES} Samples)</p>
+		</div>
+	</body>
+</html>
