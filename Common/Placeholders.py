@@ -33,6 +33,10 @@ def Base(HTML: str) -> str:
 		], HTML
 	);
 
+
+
+
+
 def Article(HTML: str, kMD_JSON: dict[str, Any]) -> str:
 	return Base(
 		String.Bulk_Replace(
@@ -50,6 +54,7 @@ def Article(HTML: str, kMD_JSON: dict[str, Any]) -> str:
 			], HTML
 		)
 	);
+
 
 
 

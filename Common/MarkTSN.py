@@ -67,6 +67,7 @@ def __Mark_Tagger(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Tag
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
 
 
+
 def __Mark_Tagger_Block(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Template: str) -> str:
 	regex_pairs: list[tuple[str, str]] = [];
 	for r_m in R_Regex.finditer(Md):
@@ -84,6 +85,7 @@ def __Mark_Tagger_Block(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: st
 			);
 			break; # ← Failsafe, supposed to happen only once anyways. Inside of an finditer because of Regex weirdness
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
+
 
 
 def __Mark_Tagger_Pair(Regex: re.Pattern[str], Md: str, Template: str, Reverse: bool = False) -> str:
