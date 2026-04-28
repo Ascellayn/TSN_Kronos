@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html {DEFAULT_THEME} lang="{LANG}">
+	<head>
+		<title>{TITLE} - The Sirio Articles</title>
+		<!-- Misc-->
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="height=device-height, width=device-width, initial-scale=0.75"/>
+		<!-- External -->
+		<link rel="stylesheet" href="{SOURCE_CSS}">
+		<!-- SNJS / Webpage Arguments -->
+		<script>const Awaited_Objects = ["SNJS_Navigation"];</script>
+		<script type="module" src="{SOURCE_JS}"></script>
+
+		<!-- SEO -->
+		<meta content="{DESCRIPTION}" name="description"/>
+		<meta content="{AUTHOR}" name="author"/>
+		<meta content="{KEYWORDS},{KEYWORDS_BASE}" name="keywords"/>
+		<!-- Embed -->
+		<meta content="{TITLE} - The Sirio Articles" property="og:title"/>
+		<meta content="{DESCRIPTION}" property="og:description"/>
+		<meta content="{BANNER}" property="og:image"/>
+		<meta content="{COLOR}" data-react-helmet="true" name="theme-color"/>
+		<meta name="twitter:card" content="summary_large_image"/>
+	</head>
+	<body>
+		<div id="Background"></div>
+		<div id="Floating"></div>
+		<div id="Root">
+			<div id="Base">
+				{ARTICLE_HEADER}
+				<article>
+					{ARTICLE_HTML}
+				</article>
+		</div>
+	</body>
+</html>

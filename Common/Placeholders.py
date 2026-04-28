@@ -3,7 +3,7 @@ from .Globals import *;
 
 
 BASE_AUTHOR: str = cast(str, File.Read("Templates/Author.txt"));
-BASE_KEYWORDS: str = cast(str, File.Read("Templates/Author.txt"));
+BASE_KEYWORDS: str = cast(str, File.Read("Templates/Keywords.txt"));
 
 DEFAULT_BANNER: str = cast(str, File.Read("Templates/Default_Banner.txt"));
 DEFAULT_COLOR: str = cast(str, File.Read("Templates/Default_Color.txt"));
@@ -17,22 +17,39 @@ SOURCE_JS: str = cast(str, File.Read("Templates/Source_JS.txt"));
 
 
 
-def Basic_Replacement(HTML: str) -> str:
+def Base(HTML: str) -> str:
 	return String.Bulk_Replace(
 		[
-			("{DEFAULT_BANNER}", DEFAULT_BANNER),
-			("{DEFAULT_COLOR}", DEFAULT_BANNER),
-			("{DEFAULT_LANG}", DEFAULT_LANG),
-			("{DEFAULT_THEME}", DEFAULT_THEME),
+			("{BANNER}", DEFAULT_BANNER),
+			("{COLOR}", DEFAULT_COLOR),
+			("{LANG}", DEFAULT_LANG),
+			("{THEME}", DEFAULT_THEME),
 			("{SOURCE_CSS}", SOURCE_CSS),
 			("{SOURCE_JS}", SOURCE_JS),
 			("{KRONOS_AppTSNA}", str(App.Dump())),
 			("{KRONOS_VERSION}", f"v{'.'.join(String.ify_Array(App.Version))}"),
-			("{AUTHOR_BASE}", BASE_AUTHOR),
+			("{AUTHOR}", BASE_AUTHOR),
 			("{KEYWORDS_BASE}", BASE_KEYWORDS)
 		], HTML
 	);
 
+def Article(HTML: str, kMD_JSON: dict[str, Any]) -> str:
+	return Base(
+		String.Bulk_Replace(
+			[
+				("{BANNER}", kMD_JSON.get("Banner", "{BANNER}")),
+				("{COLOR}", kMD_JSON.get("Color", "{COLOR}")),
+				("{LANG}", kMD_JSON.get("Lang", "{LANG}")),
+				("{THEME}", kMD_JSON.get("Theme", "{THEME}")),
+				("{AUTHOR}", kMD_JSON.get("Author", "{AUTHOR}")),
+				("{KEYWORDS}", kMD_JSON.get("Keywords", "{KEYWORDS}")),
+				("{TITLE}", kMD_JSON["Name"]),
+				("{DESCRIPTION}", kMD_JSON["Description"]),
+				("{AUTHOR}", kMD_JSON["Author"]),
+				("{DATE}", " ".join(Time.Get_DateStrings(Time.Convert_ISO8601(kMD_JSON["Date"]))))
+			], HTML
+		)
+	);
 
 
 
