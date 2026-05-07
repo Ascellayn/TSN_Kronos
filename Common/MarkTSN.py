@@ -63,7 +63,6 @@ def __Mark_Tagger(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Tag
 	for r_m in R_Regex.finditer(Md):
 		for m in Regex.finditer(Md[r_m.start() : r_m.end()]):
 			regex_pairs.append((Md[r_m.start() : r_m.end()], f"<{Tag}>{Md[r_m.start() : r_m.end()][m.start() : m.end()]}</{Tag}>"));
-			print(regex_pairs[-1])
 			break; # ← Failsafe, supposed to happen only once anyways. Inside of an finditer because of Regex weirdness
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
 
@@ -74,7 +73,6 @@ def __Mark_Tagger_Contained(Regex: re.Pattern[str], Md: str, Tag: str, Size: int
 	for i, m in enumerate(Regex.finditer(Md)):
 		if (i%2 != 0): continue; # If second, ignore because that's the wrong set of in betweens
 		regex_pairs.append((Md[m.start()-Size : m.end()+Size], f"<{Tag}>{Md[m.start() : m.end()]}</{Tag}>"));
-		print(regex_pairs[-1])
 
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
 
