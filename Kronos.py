@@ -18,7 +18,7 @@ def HTML_FrontPage():
 def HTML_Test():
 	build_init: float = Time.Get_Unix(True);
 
-	try: HTML: str = Article.Process("Articles/Template.md");
+	try: HTML: str = Article.Process("Articles/Test.md");
 	except Exception as E: return HTML_Error(E);
 
 	return Placeholders.Build_Time(HTML, build_init);

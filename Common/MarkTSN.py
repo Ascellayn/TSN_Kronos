@@ -11,12 +11,12 @@ H3: re.Pattern[str] = re.compile(r"(?<=^### ).+", flags=re.MULTILINE);
 H2: re.Pattern[str] = re.compile(r"(?<=^## ).+", flags=re.MULTILINE);
 H1: re.Pattern[str] = re.compile(r"(?<=^# ).+", flags=re.MULTILINE);
 
-BOLD: re.Pattern[str] = re.compile(r"(?<=\*\*).+(?=\*\*)", flags=re.MULTILINE);
-ITALIC: re.Pattern[str] = re.compile(r"(?<=\*).+(?=\*)", flags=re.MULTILINE);
-UNDERLINE: re.Pattern[str] = re.compile(r"(?<=__).+(?=__)", flags=re.MULTILINE);
+BOLD: re.Pattern[str] = re.compile(r"(?<=(\*\*))(?:(?=(\\?))\2.)*?(?=\1)", flags=re.MULTILINE);
+ITALIC: re.Pattern[str] = re.compile(r"(?<=(\*))(?:(?=(\\?))\2.)*?(?=\1)", flags=re.MULTILINE);
+UNDERLINE: re.Pattern[str] = re.compile(r"(?<=(__))(?:(?=(\\?))\2.)*?(?=\1)", flags=re.MULTILINE);
 
 CODEBLOCK: re.Pattern[str] = re.compile(r"(?<=```)(\w+)?[^`]+(?=```)", flags=re.MULTILINE); # First line should be equal to group
-CODE: re.Pattern[str] = re.compile(r"(?<=`)[^`]+(?=`)", flags=re.MULTILINE);
+CODE: re.Pattern[str] = re.compile(r"(?<=(`))(?:(?=(\\?))\2.)*?(?=\1)", flags=re.MULTILINE);
 
 QUOTEBLOCK: re.Pattern[str] = re.compile(r"(?<=^>>>)(\w+)?[^<]+(?=<<<)", flags=re.MULTILINE); # First line should be equal to SNC-Color
 QUOTE: re.Pattern[str] = re.compile(r"(?<=^>)(\w+)?[^\n]+", flags=re.MULTILINE);
@@ -63,7 +63,19 @@ def __Mark_Tagger(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Tag
 	for r_m in R_Regex.finditer(Md):
 		for m in Regex.finditer(Md[r_m.start() : r_m.end()]):
 			regex_pairs.append((Md[r_m.start() : r_m.end()], f"<{Tag}>{Md[r_m.start() : r_m.end()][m.start() : m.end()]}</{Tag}>"));
+			print(regex_pairs[-1])
 			break; # ← Failsafe, supposed to happen only once anyways. Inside of an finditer because of Regex weirdness
+	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
+
+
+
+def __Mark_Tagger_Contained(Regex: re.Pattern[str], Md: str, Tag: str, Size: int) -> str:
+	regex_pairs: list[tuple[str, str]] = [];
+	for i, m in enumerate(Regex.finditer(Md)):
+		if (i%2 != 0): continue; # If second, ignore because that's the wrong set of in betweens
+		regex_pairs.append((Md[m.start()-Size : m.end()+Size], f"<{Tag}>{Md[m.start() : m.end()]}</{Tag}>"));
+		print(regex_pairs[-1])
+
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
 
 
@@ -135,13 +147,13 @@ def toHTML(Md: str) -> str:
 
 
 	# Populate Text
-	Md = __Mark_Tagger(R_BOLD, BOLD, Md, "b");
-	Md = __Mark_Tagger(R_ITALIC, ITALIC, Md, "i");
-	Md = __Mark_Tagger(R_UNDERLINE, UNDERLINE, Md, "u");
-	Md = __Mark_Tagger(R_CODE, CODE, Md, "c");
+	Md = __Mark_Tagger_Contained(BOLD, Md, "b", 2);
+	Md = __Mark_Tagger_Contained(ITALIC, Md, "i", 1);
+	Md = __Mark_Tagger_Contained(UNDERLINE, Md, "u", 2);
+	Md = __Mark_Tagger_Contained(CODE, Md, "c", 1);
 
 	Md = __Mark_Tagger_Pair(IMAGE, Md, C_IMAGE);
 	Md = __Mark_Tagger_Pair(LINK, Md, C_LINK, True);
 
-	print(Md);
+	#print(Md);
 	return Md;
