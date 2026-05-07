@@ -100,7 +100,7 @@ def __Mark_Tagger_Pair(Regex: re.Pattern[str], Md: str, Template: str, Reverse: 
 				],
 				Template
 			)
-		))
+		));
 	return String.Bulk_Replace(regex_pairs, Md); # pyright: ignore[reportArgumentType] // TBD: TSNA v6.1.2 needs to fix typing here
 
 
