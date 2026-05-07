@@ -1,0 +1,1153 @@
+{
+  "build_init": {
+    "Path": [
+      "./Kronos.py",
+      "./Kronos.py"
+    ],
+    "Line": [
+      9,
+      19
+    ],
+    "String": [
+      "\tbuild_init: float = Time.Get_Unix(True);",
+      "\tbuild_init: float = Time.Get_Unix(True);"
+    ],
+    "Count": {
+      "HTML_FrontPage": 1,
+      "HTML_Test": 1
+    },
+    "Type": [
+      "float"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "HTML": {
+    "Path": [
+      "./Kronos.py",
+      "./Kronos.py"
+    ],
+    "Line": [
+      10,
+      21
+    ],
+    "String": [
+      "\tHTML: str = Placeholders.Base(cast(str, File.Read(\"Templates/Page/Front.html\")));",
+      "\ttry: HTML: str = Article.Process(\"Articles/Template.md\");"
+    ],
+    "Count": {
+      "HTML_FrontPage": 1,
+      "HTML_Test": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "try": {
+    "Path": [
+      "./Kronos.py"
+    ],
+    "Line": [
+      21
+    ],
+    "String": [
+      "\ttry: HTML: str = Article.Process(\"Articles/Template.md\");"
+    ],
+    "Count": {
+      "HTML_Test": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "TEMPLATE": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      8
+    ],
+    "String": [
+      "TEMPLATE: str = cast(str, File.Read(\"Templates/Page/Article.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "P: str": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      12
+    ],
+    "String": [
+      "def Process(P: str) -> str:"
+    ],
+    "Count": {
+      "Process": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "kmd_raw": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      15
+    ],
+    "String": [
+      "\tkmd_raw: str = cast(str, File.Read(P));"
+    ],
+    "Count": {
+      "Process": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "kmd_split": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      19
+    ],
+    "String": [
+      "\tkmd_split: list[str] = kmd_raw.split(\"=\u00a4=\", 1);"
+    ],
+    "Count": {
+      "Process": 1
+    },
+    "Type": [
+      "list[str]"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "kMD_JSON": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      23
+    ],
+    "String": [
+      "\t\tkMD_JSON: dict[str, Any] = json.loads(kmd_split[0]);"
+    ],
+    "Count": {
+      "Process": 1
+    },
+    "Type": [
+      "dict[str, Any]"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "kMD_Text": {
+    "Path": [
+      "./Common/Article.py"
+    ],
+    "Line": [
+      24
+    ],
+    "String": [
+      "\t\tkMD_Text: str = kmd_split[1];"
+    ],
+    "Count": {
+      "Process": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Article": {
+    "Path": [
+      "./Common/Article.py",
+      "./Common/Article.py",
+      "./Common/Article.py",
+      "./Common/Article.py"
+    ],
+    "Line": [
+      28,
+      29,
+      30,
+      31
+    ],
+    "String": [
+      "\tArticle: str = TEMPLATE;",
+      "\tArticle = Article.replace(\"{ARTICLE_HEADER}\", Component.HEADER);",
+      "\tArticle = Component.Handle_Words(Article, kMD_Text);",
+      "\tArticle = Article.replace(\"{ARTICLE_HTML}\", MarkTSN.toHTML(kMD_Text));"
+    ],
+    "Count": {
+      "Process": 4
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "HEADER": {
+    "Path": [
+      "./Common/Component.py"
+    ],
+    "Line": [
+      6
+    ],
+    "String": [
+      "HEADER: str = cast(str, File.Read(\"Templates/Components/Header.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "Article: str, kMD_Text: str": {
+    "Path": [
+      "./Common/Component.py"
+    ],
+    "Line": [
+      12
+    ],
+    "String": [
+      "def Handle_Words(Article: str, kMD_Text: str) -> str:"
+    ],
+    "Count": {
+      "Handle_Words": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Words": {
+    "Path": [
+      "./Common/Component.py"
+    ],
+    "Line": [
+      13
+    ],
+    "String": [
+      "\tWords: int = len(re.findall(r\"[a-zA-Z]+\", kMD_Text));"
+    ],
+    "Count": {
+      "Handle_Words": 1
+    },
+    "Type": [
+      "int"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Reading": {
+    "Path": [
+      "./Common/Component.py"
+    ],
+    "Line": [
+      14
+    ],
+    "String": [
+      "\tReading: str = Time.Elapsed_String(Words / 3, Show_Until=1, Trailing_Starting=0, Display_Units_Long=True);"
+    ],
+    "Count": {
+      "Handle_Words": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "API": {
+    "Path": [
+      "./Common/Globals.py"
+    ],
+    "Line": [
+      11
+    ],
+    "String": [
+      "API: fastapi.FastAPI = fastapi.FastAPI();"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "fastapi.FastAPI"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "E: Exception": {
+    "Path": [
+      "./Common/Globals.py"
+    ],
+    "Line": [
+      17
+    ],
+    "String": [
+      "def HTML_Error(E: Exception) -> str:"
+    ],
+    "Count": {
+      "HTML_Error": 1
+    },
+    "Type": [
+      "Exception"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "BOLD": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      14
+    ],
+    "String": [
+      "BOLD: re.Pattern[str] = re.compile(r\"(?<=\\*\\*).+(?=\\*\\*)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "ITALIC": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      15
+    ],
+    "String": [
+      "ITALIC: re.Pattern[str] = re.compile(r\"(?<=\\*).+(?=\\*)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "UNDERLINE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      16
+    ],
+    "String": [
+      "UNDERLINE: re.Pattern[str] = re.compile(r\"(?<=__).+(?=__)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "CODEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      18
+    ],
+    "String": [
+      "CODEBLOCK: re.Pattern[str] = re.compile(r\"(?<=```)(\\w+)?[^`]+(?=```)\", flags=re.MULTILINE); # First line should be equal to group"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "CODE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      19
+    ],
+    "String": [
+      "CODE: re.Pattern[str] = re.compile(r\"(?<=`)[^`]+(?=`)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "QUOTEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      21
+    ],
+    "String": [
+      "QUOTEBLOCK: re.Pattern[str] = re.compile(r\"(?<=^>>>)(\\w+)?[^<]+(?=<<<)\", flags=re.MULTILINE); # First line should be equal to SNC-Color"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "QUOTE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      22
+    ],
+    "String": [
+      "QUOTE: re.Pattern[str] = re.compile(r\"(?<=^>)(\\w+)?[^\\n]+\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "IMAGE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      24
+    ],
+    "String": [
+      "IMAGE: re.Pattern[str] = re.compile(r\"!\\[(.+)\\]\\((.+)\\)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "LINK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      25
+    ],
+    "String": [
+      "LINK: re.Pattern[str] = re.compile(r\"\\[(.+)\\]\\((.+)\\)\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_BOLD": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      36
+    ],
+    "String": [
+      "R_BOLD: re.Pattern[str] = re.compile(r\"\\*\\*.+\\*\\*\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_ITALIC": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      37
+    ],
+    "String": [
+      "R_ITALIC: re.Pattern[str] = re.compile(r\"\\*.+\\*\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_UNDERLINE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      38
+    ],
+    "String": [
+      "R_UNDERLINE: re.Pattern[str] = re.compile(r\"__.+__\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_CODEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      40
+    ],
+    "String": [
+      "R_CODEBLOCK: re.Pattern[str] = re.compile(r\"```(\\w+)?[^`]+```\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_CODE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      41
+    ],
+    "String": [
+      "R_CODE: re.Pattern[str] = re.compile(r\"`[^`]+`\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_QUOTEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      43
+    ],
+    "String": [
+      "R_QUOTEBLOCK: re.Pattern[str] = re.compile(r\"^>>>(\\w+)?[^<]+<<<\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_QUOTE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      44
+    ],
+    "String": [
+      "R_QUOTE: re.Pattern[str] = re.compile(r\"^>(\\w+)?[^\\n]+\", flags=re.MULTILINE);"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "re.Pattern[str]"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "C_CODEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      50
+    ],
+    "String": [
+      "C_CODEBLOCK: str = cast(str, File.Read(\"Templates/Components/Codeblock.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "C_QUOTEBLOCK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      51
+    ],
+    "String": [
+      "C_QUOTEBLOCK: str = cast(str, File.Read(\"Templates/Components/Quoteblock.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "C_QUOTE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      52
+    ],
+    "String": [
+      "C_QUOTE: str = cast(str, File.Read(\"Templates/Components/Quote.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "C_IMAGE": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      54
+    ],
+    "String": [
+      "C_IMAGE: str = cast(str, File.Read(\"Templates/Components/Image.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "C_LINK": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      55
+    ],
+    "String": [
+      "C_LINK: str = cast(str, File.Read(\"Templates/Components/Link.html\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Tag: str": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      61
+    ],
+    "String": [
+      "def __Mark_Tagger(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Tag: str) -> str:"
+    ],
+    "Count": {
+      "__Mark_Tagger": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "regex_pairs": {
+    "Path": [
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      62,
+      72,
+      92
+    ],
+    "String": [
+      "\tregex_pairs: list[tuple[str, str]] = [];",
+      "\tregex_pairs: list[tuple[str, str]] = [];",
+      "\tregex_pairs: list[tuple[str, str]] = [];"
+    ],
+    "Count": {
+      "__Mark_Tagger": 1,
+      "__Mark_Tagger_Block": 1,
+      "__Mark_Tagger_Pair": 1
+    },
+    "Type": [
+      "list[tuple[str, str]]"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Template: str": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      71
+    ],
+    "String": [
+      "def __Mark_Tagger_Block(R_Regex: re.Pattern[str], Regex: re.Pattern[str], Md: str, Template: str) -> str:"
+    ],
+    "Count": {
+      "__Mark_Tagger_Block": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Regex: re.Pattern[str], Md: str, Template: str, Reverse: bool = False": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      91
+    ],
+    "String": [
+      "def __Mark_Tagger_Pair(Regex: re.Pattern[str], Md: str, Template: str, Reverse: bool = False) -> str:"
+    ],
+    "Count": {
+      "__Mark_Tagger_Pair": 1
+    },
+    "Type": [
+      "bool"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Md: str": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      110
+    ],
+    "String": [
+      "def toHTML(Md: str) -> str:"
+    ],
+    "Count": {
+      "toHTML": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "Md": {
+    "Path": [
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py",
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      112,
+      113,
+      114,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      134,
+      138,
+      139,
+      140,
+      141,
+      143,
+      144
+    ],
+    "String": [
+      "\tMd = __Mark_Tagger_Block(R_CODEBLOCK, CODEBLOCK, Md, C_CODEBLOCK);",
+      "\tMd = __Mark_Tagger_Block(R_QUOTEBLOCK, QUOTEBLOCK, Md, C_QUOTEBLOCK);",
+      "\tMd = __Mark_Tagger_Block(R_QUOTE, QUOTE, Md, C_QUOTE);",
+      "\tMd = __Mark_Tagger(R_H6, H6, Md, \"h6\");",
+      "\tMd = __Mark_Tagger(R_H5, H5, Md, \"h5\");",
+      "\tMd = __Mark_Tagger(R_H4, H4, Md, \"h4\");",
+      "\tMd = __Mark_Tagger(R_H3, H3, Md, \"h3\");",
+      "\tMd = __Mark_Tagger(R_H2, H2, Md, \"h2\");",
+      "\tMd = __Mark_Tagger(R_H1, H1, Md, \"h1\");",
+      "\tMd = \"\\n\".join(md);",
+      "\tMd = __Mark_Tagger(R_BOLD, BOLD, Md, \"b\");",
+      "\tMd = __Mark_Tagger(R_ITALIC, ITALIC, Md, \"i\");",
+      "\tMd = __Mark_Tagger(R_UNDERLINE, UNDERLINE, Md, \"u\");",
+      "\tMd = __Mark_Tagger(R_CODE, CODE, Md, \"c\");",
+      "\tMd = __Mark_Tagger_Pair(IMAGE, Md, C_IMAGE);",
+      "\tMd = __Mark_Tagger_Pair(LINK, Md, C_LINK, True);"
+    ],
+    "Count": {
+      "toHTML": 16
+    },
+    "Type": [],
+    "Constant": false,
+    "Temporary": false
+  },
+  "md": {
+    "Path": [
+      "./Common/MarkTSN.py"
+    ],
+    "Line": [
+      127
+    ],
+    "String": [
+      "\tmd: list[str] = Md.split(\"\\n\");"
+    ],
+    "Count": {
+      "toHTML": 1
+    },
+    "Type": [
+      "list[str]"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "BASE_AUTHOR": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      5
+    ],
+    "String": [
+      "BASE_AUTHOR: str = cast(str, File.Read(\"Templates/Author.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "BASE_KEYWORDS": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      6
+    ],
+    "String": [
+      "BASE_KEYWORDS: str = cast(str, File.Read(\"Templates/Keywords.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "DEFAULT_BANNER": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      8
+    ],
+    "String": [
+      "DEFAULT_BANNER: str = cast(str, File.Read(\"Templates/Default_Banner.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "DEFAULT_COLOR": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      9
+    ],
+    "String": [
+      "DEFAULT_COLOR: str = cast(str, File.Read(\"Templates/Default_Color.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "DEFAULT_LANG": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      10
+    ],
+    "String": [
+      "DEFAULT_LANG: str = cast(str, File.Read(\"Templates/Default_Lang.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "DEFAULT_THEME": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      11
+    ],
+    "String": [
+      "DEFAULT_THEME: str = cast(str, File.Read(\"Templates/Default_Theme.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "SOURCE_CSS": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      13
+    ],
+    "String": [
+      "SOURCE_CSS: str = cast(str, File.Read(\"Templates/Source_CSS.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "SOURCE_JS": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      14
+    ],
+    "String": [
+      "SOURCE_JS: str = cast(str, File.Read(\"Templates/Source_JS.txt\"));"
+    ],
+    "Count": {
+      "--ROOT--": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": true,
+    "Temporary": false
+  },
+  "HTML: str": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      20
+    ],
+    "String": [
+      "def Base(HTML: str) -> str:"
+    ],
+    "Count": {
+      "Base": 1
+    },
+    "Type": [
+      "str"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "HTML: str, kMD_JSON: dict[str, Any]": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      40
+    ],
+    "String": [
+      "def Article(HTML: str, kMD_JSON: dict[str, Any]) -> str:"
+    ],
+    "Count": {
+      "Article": 1
+    },
+    "Type": [
+      "dict[str, Any]"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "HTML: str, Unix_Starting: float": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      62
+    ],
+    "String": [
+      "def Build_Time(HTML: str, Unix_Starting: float) -> str:"
+    ],
+    "Count": {
+      "Build_Time": 1
+    },
+    "Type": [
+      "float"
+    ],
+    "Constant": false,
+    "Temporary": false
+  },
+  "time": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      63
+    ],
+    "String": [
+      "\ttime: float = Time.Get_Unix(True) - Unix_Starting;"
+    ],
+    "Count": {
+      "Build_Time": 1
+    },
+    "Type": [
+      "float"
+    ],
+    "Constant": false,
+    "Temporary": true
+  },
+  "avg": {
+    "Path": [
+      "./Common/Placeholders.py"
+    ],
+    "Line": [
+      68
+    ],
+    "String": [
+      "\tavg: float = sum(App.Public[\"Build_Average\"]) / len(App.Public[\"Build_Average\"]);"
+    ],
+    "Count": {
+      "Build_Time": 1
+    },
+    "Type": [
+      "float"
+    ],
+    "Constant": false,
+    "Temporary": true
+  }
+}
